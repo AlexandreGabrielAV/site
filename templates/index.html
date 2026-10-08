@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+
+{% block titulo %}Início — CineLocadora{% endblock %}
+
+{% block conteudo %}
+
+<div class="hero rounded-3 p-5 mb-4 text-center">
+  <h1 class="display-5 fw-bold">🎬 CineLocadora</h1>
+  <p class="lead mb-0">Gerencie usuários, filmes e aluguéis em um só lugar.</p>
+</div>
+
+<div class="row g-4">
+
+  <div class="col-md-4">
+    <div class="card card-menu h-100 text-center">
+      <div class="card-body">
+        <div class="display-4">👤</div>
+        <h5 class="card-title mt-2">Usuários</h5>
+        <p class="card-text text-muted">Cadastre e consulte os clientes da locadora.</p>
+        <a href="{{ url_for('usuario_novo') }}" class="btn btn-primary btn-sm">Cadastrar</a>
+        <a href="{{ url_for('usuarios_lista') }}" class="btn btn-outline-primary btn-sm">Listar</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-4">
+    <div class="card card-menu h-100 text-center">
+      <div class="card-body">
+        <div class="display-4">🎞️</div>
+        <h5 class="card-title mt-2">Filmes</h5>
+        <p class="card-text text-muted">Mantenha o catálogo de filmes disponíveis.</p>
+        <a href="{{ url_for('filme_novo') }}" class="btn btn-primary btn-sm">Cadastrar</a>
+        <a href="{{ url_for('filmes_lista') }}" class="btn btn-outline-primary btn-sm">Listar</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-4">
+    <div class="card card-menu h-100 text-center">
+      <div class="card-body">
+        <div class="display-4">📀</div>
+        <h5 class="card-title mt-2">Aluguéis</h5>
+        <p class="card-text text-muted">Registre os aluguéis e acompanhe o histórico.</p>
+        <a href="{{ url_for('aluguel_novo') }}" class="btn btn-primary btn-sm">Novo aluguel</a>
+        <a href="{{ url_for('alugueis_lista') }}" class="btn btn-outline-primary btn-sm">Listar</a>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+{% endblock %}

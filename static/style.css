@@ -1,0 +1,6 @@
+/* Ajustes leves sobre o Bootstrap */
+body { background-color: #f5f6fa; }
+.hero { background: linear-gradient(135deg, #212529, #3b3f45); color: #fff; }
+.card-menu { transition: transform .15s ease, box-shadow .15s ease; }
+.card-menu:hover { transform: translateY(-4px); box-shadow: 0 .5rem 1rem rgba(0,0,0,.15); }
+footer { font-size: .9rem; }

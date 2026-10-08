@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block titulo %}Login — CineLocadora{% endblock %}
+
+{% block conteudo %}
+<div class="row justify-content-center">
+  <div class="col-md-5 col-lg-4">
+    <div class="card shadow-sm">
+      <div class="card-header bg-dark text-white text-center">
+        <h4 class="mb-0">🔐 Painel de Login</h4>
+      </div>
+      <div class="card-body">
+
+        {# POST: a senha nunca deve trafegar na URL #}
+        <form action="{{ url_for('login') }}" method="post">
+
+          <div class="mb-3">
+            <label for="email" class="form-label">E-mail</label>
+            <input type="email" class="form-control" id="email" name="email"
+                   placeholder="seu@email.com"
+                   value="{{ email | default('') }}">
+          </div>
+
+          <div class="mb-3">
+            <label for="senha" class="form-label">Senha</label>
+            <input type="password" class="form-control" id="senha" name="senha"
+                   placeholder="Digite sua senha">
+          </div>
+
+          <div class="d-grid">
+            <button type="submit" class="btn btn-dark">Entrar</button>
+          </div>
+
+        </form>
+
+      </div>
+      <div class="card-footer text-center text-muted">
+        Ainda não tem conta? <a href="{{ url_for('usuario_novo') }}">Cadastre-se</a>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

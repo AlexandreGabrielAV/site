@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+
+{% block titulo %}Usuários — CineLocadora{% endblock %}
+
+{% block conteudo %}
+<div class="d-flex justify-content-between align-items-center mb-3">
+  <h2 class="mb-0">👤 Usuários cadastrados</h2>
+  <div>
+    <span class="badge bg-secondary me-2">{{ total }} usuário(s)</span>
+    <a href="{{ url_for('usuario_novo') }}" class="btn btn-primary btn-sm">+ Novo usuário</a>
+  </div>
+</div>
+
+{% if usuarios %}
+  <div class="table-responsive">
+    <table class="table table-striped table-hover align-middle bg-white">
+      <thead class="table-dark">
+        <tr>
+          <th>#</th>
+          <th>Nome</th>
+          <th>E-mail</th>
+          <th>Cidade</th>
+          <th>Perfil</th>
+          <th>Situação</th>
+          <th>Cadastro</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for u in usuarios %}
+        <tr>
+          <td>{{ u.id }}</td>
+          <td><strong>{{ u.nome }}</strong></td>
+          <td>{{ u.email }}</td>
+          <td>{{ u.cidade }}</td>
+          <td><span class="badge bg-info text-dark">{{ u.perfil }}</span></td>
+          <td>
+            {% if u.ativo %}
+              <span class="badge bg-success">Ativo</span>
+            {% else %}
+              <span class="badge bg-secondary">Inativo</span>
+            {% endif %}
+          </td>
+          <td>{{ u.criado_em }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+{% else %}
+  <div class="alert alert-warning">
+    <strong>Nenhum usuário cadastrado.</strong>
+    <a href="{{ url_for('usuario_novo') }}">Cadastre o primeiro usuário</a>.
+  </div>
+{% endif %}
+{% endblock %}

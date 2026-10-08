@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+
+{% block titulo %}Aluguéis — CineLocadora{% endblock %}
+
+{% block conteudo %}
+<div class="d-flex justify-content-between align-items-center mb-3">
+  <h2 class="mb-0">📀 Aluguéis registrados</h2>
+  <div>
+    <span class="badge bg-secondary me-2">{{ total }} aluguel(is)</span>
+    <a href="{{ url_for('aluguel_novo') }}" class="btn btn-primary btn-sm">+ Novo aluguel</a>
+  </div>
+</div>
+
+{% if alugueis %}
+  <div class="table-responsive">
+    <table class="table table-striped table-hover align-middle bg-white">
+      <thead class="table-dark">
+        <tr>
+          <th>#</th>
+          <th>Cliente</th>
+          <th>Filme</th>
+          <th>Dias</th>
+          <th>Valor total</th>
+          <th>Data</th>
+          <th>Situação</th>
+          <th>Observações</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for a in alugueis %}
+        <tr>
+          <td>{{ a.id }}</td>
+          <td>{{ a.cliente_nome }}</td>
+          <td><strong>{{ a.filme_titulo }}</strong></td>
+          <td>{{ a.dias }}</td>
+          <td>R$ {{ "%.2f" | format(a.valor_total) }}</td>
+          <td>{{ a.alugado_em }}</td>
+          <td>
+            {% if a.devolvido %}
+              <span class="badge bg-success">Devolvido</span>
+            {% else %}
+              <span class="badge bg-warning text-dark">Em aberto</span>
+            {% endif %}
+          </td>
+          <td>{{ a.observacao | default('', true) }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+      <tfoot>
+        <tr class="table-light">
+          <td colspan="4" class="text-end"><strong>Total geral:</strong></td>
+          <td colspan="4"><strong>R$ {{ "%.2f" | format(total_geral) }}</strong></td>
+        </tr>
+      </tfoot>
+    </table>
+  </div>
+{% else %}
+  <div class="alert alert-warning">
+    <strong>Nenhum aluguel registrado.</strong>
+    <a href="{{ url_for('aluguel_novo') }}">Registre o primeiro aluguel</a>.
+  </div>
+{% endif %}
+{% endblock %}
